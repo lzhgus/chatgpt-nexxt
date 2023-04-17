@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth'
 import './globals.css'
 import { authOptions } from './api/auth/[...nextauth]/route'
 import Login from './components/Login'
+import ClientProvider from './components/ClientProvider'
 
 export const metadata = {
   title: 'ChatGPT Nexxt',
@@ -15,9 +16,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  console.log("test");
   const session = await getServerSession(authOptions);
-  console.log(session);
   return (
     <html lang="en">
       <head />
@@ -31,6 +30,7 @@ export default async function RootLayout({
                 <SideBar />
               </div>
               {/* ClientProvider - Notifications */}
+              <ClientProvider />
               <div className="bg-[#343541] flex-1">{children}</div>
             </div>
           )}
