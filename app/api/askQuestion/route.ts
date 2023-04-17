@@ -38,17 +38,15 @@ async function handler(
         },
     };
 
-    const messageData = JSON.parse(JSON.stringify(message));
+    // await adminDB
+    //     .collection("users")
+    //     .doc(session?.user?.email)
+    //     .collection("chats")
+    //     .doc(chatId)
+    //     .collection("messages")
+    //     .add(message);
 
-    await adminDB
-        .collection("users")
-        .doc(session?.user?.email)
-        .collection("chats")
-        .doc(chatId)
-        .collection("messages")
-        .add(messageData);
-
-    // await addDoc(collection(db, 'users', session?.user?.email!, 'chats', chatId, 'messages'), message);
+    await addDoc(collection(db, 'users', session?.user?.email!, 'chats', chatId, 'messages'), message);
 
     return new Response(JSON.stringify({ answer: message.text }));
 }
